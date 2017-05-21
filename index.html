@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Train Scheduler</title>
+	<!-- reset css -- >
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- style css -->
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+
+	<!--wrapper for the whole doc -->
+	<div class = "wrapper">
+
+		<!--container for heading-->
+		<div class = "container">
+			<div class = "jumbotron">
+				<h3>Train Scheduler</h3>
+			</div>
+		</div>
+
+
+		<!--panel with child table to display train information-->
+		<div class = "container-fluid">
+			<div class = "panel panel-primary">
+				<div class = "panel-heading">Current Train Schedule</div>
+				<div class = "panel-body">
+					<table class = "table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Destination</th>
+								<th>Frequency (min)</th>
+								<th>Next Arrival</th>
+								<th>Minutes Away</th>						
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>					
+					</table>
+				</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!--panel with child form to input new train information-->
+		<div class = "container-fluid">
+			<div class = "panel panel-primary">
+				<div class = "panel-heading">Add Train</div>
+				<div class = "panel-body">
+					<form class = "form-group">
+						<label for = "trainname">Train Name</label>
+						<input type="text" id = "trainname" class = "form-control" placeholder="">
+
+						<label for = "destination">Destination</label>
+						<input type="text" id = "destination" class = "form-control" placeholder="">
+
+						<label for = "firsttraintime">First Train Time </label>
+						<input type="text" id = "firsttraintime" class = "form-control" placeholder="Please enter in Military Time (HH:mm)">
+
+						<label for = "frequency">Frequency</label>
+						<input type="text" id = "frequency" class = "form-control" placeholder="Please enter in minutes">
+					</form>
+					<button class = "btn btn-primary" type = "submit" id="submitbutton">SUBMIT</button>
+
+				</div>
+			</div>
+		</div>
+
+
+	<!--closing tag for wrapper-->
+	</div>
+
+	<!--firebase-->
+	<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+
+	<!--jquery-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!--moment.js-->
+	<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/af.js"></script>
+
+	<!--javascript-->
+	<script type="text/javascript" src = "assets/javascript/app.js"></script>
+
+</body>
+</html>
