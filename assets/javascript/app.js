@@ -10,4 +10,6 @@
   firebase.initializeApp(config);
 
 
-  
+  $('#submitbutton').on('click', function(){
+    alert('you clicked me !');
+  })
