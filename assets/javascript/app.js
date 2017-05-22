@@ -1,3 +1,5 @@
+  
+
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyBbMAVrVBP6F8IM0mID-2g7Za0ljDkg61A",
@@ -18,6 +20,8 @@
   var destination = "";
   var firstTrainTime = "";
   var frequency = "";
+  var nextArrival = null;
+  var minutesAway = null;
 
 
 
@@ -90,6 +94,10 @@
         + "</td><td id = 'minutes_togo'> " + timeTillTrain        
         + "</td></tr>")
 
+      //play audio
+      var whistle = $('#whistle')[0];
+       $('#whistle').get(0).play();
+
       // error handler
     }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
@@ -97,3 +105,4 @@
 
     //closing tags for child_added event
     });
+
