@@ -1,4 +1,4 @@
-  
+$(document).ready(function(){
 
   // Initialize Firebase
   var config = {
@@ -20,9 +20,6 @@
   var destination = "";
   var firstTrainTime = "";
   var frequency = "";
-  var nextArrival = null;
-  var minutesAway = null;
-
 
 
   // click event for submit
@@ -51,10 +48,10 @@
 
     database.ref().on("child_added", function(watcher){
 
-      console.log(watcher.val().trainName);
-      console.log(watcher.val().destination);
-      console.log(watcher.val().firstTrainTime);
-      console.log(watcher.val().frequency);
+      console.log('Train Name: ' + watcher.val().trainName);
+      console.log('Destination: ' + watcher.val().destination);
+      console.log('First Train Arrival Time: ' + watcher.val().firstTrainTime);
+      console.log('Train Frequency: ' + watcher.val().frequency);
 
       //clear input fields
       $('.form-control').val("");
@@ -77,7 +74,7 @@
       var remainder = diffTime % tFrequency;
 
       //subtracts the remainder by the frequency of train arrivals
-      var timeTillTrain = tFrequency - remainder;
+      var timeTillTrain = parseInt(tFrequency - remainder);
 
       //add time until next train (in minutes) to show arrival time in hours and minutes
       var nextChooChoo = moment().add(timeTillTrain, "minutes");
@@ -86,23 +83,54 @@
       var formatNextChooChoo = moment(nextChooChoo).format("HH:mm");
 
 
-      //append new info to table body
+    
+       //append new info to table body
       $('.tablebody').append("<tr><td id = 'train_name'>" + watcher.val().trainName 
         + "</td><td id = 'arrival_destination'> " + watcher.val().destination
         + "</td><td id = 'frequency_minutes'> " + watcher.val().frequency
-        + "</td><td id - 'next_arrival'> " + formatNextChooChoo
+        + "</td><td id = 'next_arrival'> " + formatNextChooChoo
         + "</td><td id = 'minutes_togo'> " + timeTillTrain        
         + "</td></tr>")
+
+     
+      
+      
+      
+     
+
+      var factChecker = function(){
+        var startTime = moment().format('ss');
+        var counter = parseInt($('#minutes_togo').text());        
+        console.log(startTime);
+
+        if(startTime === '00'){
+          counter--;
+          console.log(counter);
+          $('#minutes_togo').text(counter);
+        }
+        if (counter === 0){
+          $('#minutes_togo').text(timeTillTrain);
+        }
+      }
+      
+
+        
+       var check = setInterval(function(){
+        factChecker()}, 1000);
+       
+
+
 
       //play audio
       var whistle = $('#whistle')[0];
        $('#whistle').get(0).play();
+
 
       // error handler
     }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
 
 
-    //closing tags for child_added event
+    //closing tags errorObject
     });
-
+});
